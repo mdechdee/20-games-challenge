@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj7hw2sapwo5e"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://klksk7mu3t1" path="res://scenes/default_physics_material.tres" id="1_lgk41"]
+[ext_resource type="Shader" path="res://scenes/fill.gdshader" id="1_u76ew"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="2_fpenm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipkmr"]
+size = Vector2(6, 58)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33kvv"]
+shader = ExtResource("1_u76ew")
+
+[sub_resource type="Gradient" id="Gradient_g2sm3"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vwjds"]
+gradient = SubResource("Gradient_g2sm3")
+width = 16
+height = 96
+fill_to = Vector2(1, 1)
+
+[node name="Player" type="StaticBody2D"]
+physics_material_override = ExtResource("1_lgk41")
+script = ExtResource("2_fpenm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ipkmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_33kvv")
+texture = SubResource("GradientTexture2D_vwjds")
+region_rect = Rect2(0, 0, 6, 58)

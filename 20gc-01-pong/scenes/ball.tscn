@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cowdxae8kws4u"]
+
+[ext_resource type="Shader" path="res://scenes/ball.gdshader" id="1_l4pee"]
+[ext_resource type="Gradient" uid="uid://djli0spdfmq8j" path="res://scenes/empty_gradient.tres" id="2_1steb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vjvb2"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a8sn"]
+shader = ExtResource("1_l4pee")
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4ogue"]
+gradient = ExtResource("2_1steb")
+width = 24
+height = 24
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1oc6w"]
+radius = 12.0
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_vjvb2")
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_1a8sn")
+texture = SubResource("GradientTexture2D_4ogue")
+region_rect = Rect2(0, 0, 10, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1oc6w")
