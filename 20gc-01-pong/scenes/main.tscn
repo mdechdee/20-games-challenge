@@ -1,11 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://derq6e1dkqsr3"]
+[gd_scene load_steps=13 format=3 uid="uid://derq6e1dkqsr3"]
 
 [ext_resource type="PackedScene" uid="uid://cj7hw2sapwo5e" path="res://scenes/player.tscn" id="1_2kriq"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_f8oyx"]
 [ext_resource type="Shader" path="res://scenes/fill.gdshader" id="1_svg37"]
 [ext_resource type="PackedScene" uid="uid://cowdxae8kws4u" path="res://scenes/ball.tscn" id="2_4t4ih"]
 [ext_resource type="Gradient" uid="uid://djli0spdfmq8j" path="res://scenes/empty_gradient.tres" id="2_jnxe3"]
+[ext_resource type="FontFile" uid="uid://861qr4dr4p5k" path="res://assets/PressStart2P-vaV7.ttf" id="2_ni1bf"]
 [ext_resource type="PhysicsMaterial" uid="uid://klksk7mu3t1" path="res://scenes/default_physics_material.tres" id="2_tn555"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8odt0"]
+font = ExtResource("2_ni1bf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hei5g"]
 shader = ExtResource("1_svg37")
@@ -18,14 +22,19 @@ height = 20
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yec1"]
 size = Vector2(1600, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svysr"]
+size = Vector2(220, 625)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_f8oyx")
-metadata/_edit_horizontal_guides_ = [24.0, 638.0]
+BALL = ExtResource("2_4t4ih")
+metadata/_edit_horizontal_guides_ = [735.0, 52.0]
+metadata/_edit_vertical_guides_ = [64.0, 1071.0]
 
-[node name="BG" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="BG"]
+[node name="BG" type="ColorRect" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,8 +42,32 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="P1Score" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 44.0
+offset_top = 50.0
+offset_right = 84.0
+offset_bottom = 73.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_8odt0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P2Score" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 1052.0
+offset_top = 50.0
+offset_right = 1092.0
+offset_bottom = 73.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_8odt0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WallAbove" type="StaticBody2D" parent="."]
-position = Vector2(573, 1)
+position = Vector2(576, 1)
 physics_material_override = ExtResource("2_tn555")
 
 [node name="Sprite2D" type="Sprite2D" parent="WallAbove"]
@@ -45,7 +78,7 @@ texture = SubResource("GradientTexture2D_2riqs")
 shape = SubResource("RectangleShape2D_8yec1")
 
 [node name="WallBelow" type="StaticBody2D" parent="."]
-position = Vector2(573, 648)
+position = Vector2(576, 648)
 physics_material_override = ExtResource("2_tn555")
 
 [node name="Sprite2D" type="Sprite2D" parent="WallBelow"]
@@ -61,7 +94,21 @@ position = Vector2(63, 313)
 [node name="Player2" parent="." instance=ExtResource("1_2kriq")]
 position = Vector2(1071, 313)
 
-[node name="Ball" parent="." instance=ExtResource("2_4t4ih")]
-unique_name_in_owner = true
-position = Vector2(573, 326)
-gravity_scale = 0.0
+[node name="DeathZoneLeft" type="Area2D" parent="."]
+position = Vector2(-157, 325)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZoneLeft"]
+shape = SubResource("RectangleShape2D_svysr")
+
+[node name="DeathZoneRight" type="Area2D" parent="."]
+position = Vector2(1306, 325)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZoneRight"]
+shape = SubResource("RectangleShape2D_svysr")
+
+[node name="BallSpawn" type="Marker2D" parent="."]
+position = Vector2(576, 324)
