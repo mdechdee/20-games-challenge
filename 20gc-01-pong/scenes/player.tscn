@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj7hw2sapwo5e"]
+[gd_scene load_steps=7 format=3 uid="uid://cj7hw2sapwo5e"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://klksk7mu3t1" path="res://scenes/default_physics_material.tres" id="1_lgk41"]
 [ext_resource type="Shader" path="res://scenes/fill.gdshader" id="1_u76ew"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="2_fpenm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipkmr"]
 size = Vector2(6, 58)
@@ -22,7 +21,6 @@ fill_to = Vector2(1, 1)
 
 [node name="Player" type="StaticBody2D"]
 physics_material_override = ExtResource("1_lgk41")
-script = ExtResource("2_fpenm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ipkmr")

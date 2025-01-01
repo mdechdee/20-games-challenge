@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://derq6e1dkqsr3"]
+[gd_scene load_steps=15 format=3 uid="uid://derq6e1dkqsr3"]
 
 [ext_resource type="PackedScene" uid="uid://cj7hw2sapwo5e" path="res://scenes/player.tscn" id="1_2kriq"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_f8oyx"]
@@ -7,6 +7,8 @@
 [ext_resource type="Gradient" uid="uid://djli0spdfmq8j" path="res://scenes/empty_gradient.tres" id="2_jnxe3"]
 [ext_resource type="FontFile" uid="uid://861qr4dr4p5k" path="res://assets/PressStart2P-vaV7.ttf" id="2_ni1bf"]
 [ext_resource type="PhysicsMaterial" uid="uid://klksk7mu3t1" path="res://scenes/default_physics_material.tres" id="2_tn555"]
+[ext_resource type="PackedScene" uid="uid://ngo27pavtsjf" path="res://scenes/player_controller_manual.tscn" id="8_djdbv"]
+[ext_resource type="PackedScene" uid="uid://duw7i5cl36it7" path="res://scenes/player_controller_ai.tscn" id="8_iu7wy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8odt0"]
 font = ExtResource("2_ni1bf")
@@ -91,8 +93,12 @@ shape = SubResource("RectangleShape2D_8yec1")
 [node name="Player1" parent="." instance=ExtResource("1_2kriq")]
 position = Vector2(63, 313)
 
+[node name="PlayerControllerManual" parent="Player1" instance=ExtResource("8_djdbv")]
+
 [node name="Player2" parent="." instance=ExtResource("1_2kriq")]
 position = Vector2(1071, 313)
+
+[node name="PlayerControllerAi" parent="Player2" instance=ExtResource("8_iu7wy")]
 
 [node name="DeathZoneLeft" type="Area2D" parent="."]
 position = Vector2(-157, 325)

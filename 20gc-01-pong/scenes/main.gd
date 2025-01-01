@@ -19,7 +19,6 @@ func _ready() -> void:
 
 func _respawn_ball() -> void:
 	if is_instance_valid(ball):
-		print("ball")
 		ball.queue_free()
 		await ball.tree_exited
 	ball = BALL.instantiate()
