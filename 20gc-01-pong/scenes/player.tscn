@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj7hw2sapwo5e"]
+[gd_scene load_steps=6 format=3 uid="uid://cj7hw2sapwo5e"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://klksk7mu3t1" path="res://scenes/default_physics_material.tres" id="1_lgk41"]
 [ext_resource type="Shader" path="res://scenes/fill.gdshader" id="1_u76ew"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipkmr"]
-size = Vector2(6, 58)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ylqxa"]
+a = Vector2(0, -47)
+b = Vector2(0, 47)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_33kvv"]
 shader = ExtResource("1_u76ew")
@@ -19,11 +19,10 @@ width = 16
 height = 96
 fill_to = Vector2(1, 1)
 
-[node name="Player" type="StaticBody2D"]
-physics_material_override = ExtResource("1_lgk41")
+[node name="Player" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ipkmr")
+shape = SubResource("SegmentShape2D_ylqxa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_33kvv")

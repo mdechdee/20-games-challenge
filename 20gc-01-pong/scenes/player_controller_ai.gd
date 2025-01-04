@@ -1,7 +1,7 @@
 extends PlayerController
 
 @onready var timer: Timer = Timer.new()
-@onready var ball: RigidBody2D
+@onready var ball: CharacterBody2D
 @export var reaction_time: float = .2
 
 var _move_direction: Vector2
@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 func _on_scene_tree_node_added(node: Node) -> void:
 	# if node added to scene tree is ball
-	if node is RigidBody2D:
+	if node is CharacterBody2D:
 		ball = node
 
 func _randomize_time() -> void:

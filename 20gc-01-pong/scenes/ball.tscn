@@ -1,13 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cowdxae8kws4u"]
+[gd_scene load_steps=9 format=3 uid="uid://cowdxae8kws4u"]
 
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_507on"]
 [ext_resource type="Shader" path="res://scenes/ball.gdshader" id="1_l4pee"]
 [ext_resource type="Gradient" uid="uid://djli0spdfmq8j" path="res://scenes/empty_gradient.tres" id="2_1steb"]
 [ext_resource type="AudioStream" uid="uid://dpbbcua7xetw0" path="res://assets/13587_1459781219.mp3" id="4_kyk2k"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vjvb2"]
-friction = 0.0
-bounce = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1a8sn"]
 shader = ExtResource("1_l4pee")
@@ -27,13 +23,8 @@ random_volume_offset_db = 0.2
 streams_count = 1
 stream_0/stream = ExtResource("4_kyk2k")
 
-[node name="Ball" type="RigidBody2D"]
+[node name="Ball" type="CharacterBody2D"]
 collision_layer = 3
-physics_material_override = SubResource("PhysicsMaterial_vjvb2")
-gravity_scale = 0.0
-contact_monitor = true
-linear_damp_mode = 1
-angular_damp_mode = 1
 script = ExtResource("1_507on")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
