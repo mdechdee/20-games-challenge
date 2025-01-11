@@ -7,9 +7,10 @@ const MAX_Y_SPEED = 600.0
 
 var extra_speed: float = 0.0 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
-	velocity.x = 100.0
+	velocity.x = 500.0
 
 func _physics_process(delta: float) -> void:
 	var animation_to_play := &"run"
@@ -34,3 +35,7 @@ func _physics_process(delta: float) -> void:
 	
 	if animation_player.current_animation != animation_to_play:
 		animation_player.play(animation_to_play, .2)
+
+func take_damage():
+	velocity /= 1.5
+	audio_stream_player.play()

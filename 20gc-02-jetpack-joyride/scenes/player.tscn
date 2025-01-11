@@ -1,62 +1,20 @@
-[gd_scene load_steps=33 format=3 uid="uid://b3weksrvkng76"]
+[gd_scene load_steps=24 format=3 uid="uid://db1i1mgr5ngio"]
 
-[ext_resource type="Material" uid="uid://3d82bqoo1kgw" path="res://resources/cloud_shader_material.tres" id="1_0ylgm"]
-[ext_resource type="Texture2D" uid="uid://d1wgs71ibpan4" path="res://assets/dirt_ground.png" id="2_gtyjx"]
-[ext_resource type="Script" path="res://player.gd" id="3_q2chi"]
-[ext_resource type="Shader" path="res://resources/circle.gdshader" id="5_3pf1x"]
-[ext_resource type="Texture2D" uid="uid://dbjgwpvjb4l6o" path="res://assets/back_wing.png" id="5_v0akl"]
-[ext_resource type="Texture2D" uid="uid://e4ivott7g4up" path="res://assets/back_leg.png" id="6_aunvo"]
-[ext_resource type="Shader" path="res://resources/outline.gdshader" id="6_xx013"]
-[ext_resource type="Texture2D" uid="uid://cck75r7cvogto" path="res://assets/body.png" id="7_ciiqs"]
-[ext_resource type="Texture2D" uid="uid://p3i3nwv3ojru" path="res://assets/front_wing.png" id="8_3ii1m"]
-[ext_resource type="Texture2D" uid="uid://csjchfg04v4qm" path="res://assets/eyes.png" id="9_63taf"]
-[ext_resource type="Texture2D" uid="uid://bityqvaeorrul" path="res://assets/front_leg.png" id="10_y3hty"]
-[ext_resource type="Script" path="res://obstacle_spawner.gd" id="12_i4rp6"]
-
-[sub_resource type="Gradient" id="Gradient_0nmqk"]
-colors = PackedColorArray(0.371627, 0.65865, 0.730544, 1, 0.504, 0.7952, 0.84, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_op7e7"]
-gradient = SubResource("Gradient_0nmqk")
-width = 1152
-height = 648
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pokb1"]
-shader = ExtResource("5_3pf1x")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lmuvt"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(80, 25, 1)
-direction = Vector3(-1, 0, 0)
-spread = 1.0
-flatness = 0.1
-initial_velocity_min = 14.75
-initial_velocity_max = 15.25
-gravity = Vector3(0, 0, 0)
-scale_max = 6.0
-
-[sub_resource type="Gradient" id="Gradient_gecrc"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_eguf8"]
-gradient = SubResource("Gradient_gecrc")
-width = 16
-height = 16
-
-[sub_resource type="Gradient" id="Gradient_6404n"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2scup"]
-gradient = SubResource("Gradient_6404n")
-width = 1600
-height = 800
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_bbwmi"]
+[ext_resource type="Shader" path="res://resources/outline.gdshader" id="2_4v0lo"]
+[ext_resource type="Texture2D" uid="uid://cck75r7cvogto" path="res://assets/body.png" id="3_sf63f"]
+[ext_resource type="Texture2D" uid="uid://csjchfg04v4qm" path="res://assets/eyes.png" id="4_4cde3"]
+[ext_resource type="Texture2D" uid="uid://dbjgwpvjb4l6o" path="res://assets/back_wing.png" id="5_2r281"]
+[ext_resource type="Texture2D" uid="uid://e4ivott7g4up" path="res://assets/back_leg.png" id="6_vytf0"]
+[ext_resource type="Texture2D" uid="uid://p3i3nwv3ojru" path="res://assets/front_wing.png" id="7_kcf4y"]
+[ext_resource type="Texture2D" uid="uid://bityqvaeorrul" path="res://assets/front_leg.png" id="8_tfg5t"]
+[ext_resource type="Shader" path="res://resources/circle.gdshader" id="9_nnl3q"]
+[ext_resource type="AudioStream" uid="uid://ckdylsjfty1nv" path="res://assets/sfx/chicken1.wav" id="10_xm6xt"]
+[ext_resource type="AudioStream" uid="uid://bhaj7jee0fscl" path="res://assets/sfx/chicken2.wav" id="11_ccw4e"]
+[ext_resource type="AudioStream" uid="uid://doolnpvjogf6r" path="res://assets/sfx/chicken3.wav" id="12_yee6o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2m5xt"]
-shader = ExtResource("6_xx013")
+shader = ExtResource("2_4v0lo")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 2.0
 
@@ -64,7 +22,7 @@ shader_parameter/line_thickness = 2.0
 radius = 37.0135
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_stro2"]
-shader = ExtResource("5_3pf1x")
+shader = ExtResource("9_nnl3q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5a3sl"]
 particle_flag_disable_z = true
@@ -318,141 +276,61 @@ _data = {
 "run": SubResource("Animation_v2wju")
 }
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cyxfq"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_niafj"]
+streams_count = 3
+stream_0/stream = ExtResource("10_xm6xt")
+stream_1/stream = ExtResource("11_ccw4e")
+stream_2/stream = ExtResource("12_yee6o")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1fsg6"]
-normal = Vector2(0, 1)
-
-[node name="Node2D" type="Node2D"]
-metadata/_edit_vertical_guides_ = [1199.0]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="Sky" type="TextureRect" parent="ParallaxBackground"]
-z_index = -2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_op7e7")
-
-[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.001, 1)
-
-[node name="Cloud" type="CanvasGroup" parent="ParallaxBackground/Clouds"]
-self_modulate = Color(1, 1, 1, 0.294118)
-position = Vector2(1448, 24)
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="ParallaxBackground/Clouds/Cloud"]
-material = SubResource("ShaderMaterial_pokb1")
-position = Vector2(-2, 1)
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_lmuvt")
-texture = SubResource("GradientTexture2D_eguf8")
-lifetime = 160.0
-preprocess = 150.0
-explosiveness = 1.0
-randomness = 1.0
-visibility_rect = Rect2(-2000, -100, 3000, 200)
-local_coords = true
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground/Clouds/Cloud"]
-material = SubResource("ShaderMaterial_pokb1")
-position = Vector2(-3, 2)
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_lmuvt")
-texture = SubResource("GradientTexture2D_eguf8")
-lifetime = 160.0
-preprocess = 100.0
-explosiveness = 1.0
-randomness = 1.0
-visibility_rect = Rect2(-2000, -100, 3000, 200)
-local_coords = true
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParallaxBackground/Clouds/Cloud"]
-material = SubResource("ShaderMaterial_pokb1")
-position = Vector2(1, 2)
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_lmuvt")
-texture = SubResource("GradientTexture2D_eguf8")
-lifetime = 160.0
-preprocess = 50.0
-explosiveness = 1.0
-randomness = 1.0
-visibility_rect = Rect2(-3000, -100, 3000, 200)
-local_coords = true
-
-[node name="CloudLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(1, -94)
-motion_scale = Vector2(0.1, 1)
-motion_mirroring = Vector2(1600, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CloudLayer"]
-material = ExtResource("1_0ylgm")
-position = Vector2(-3, 50)
-texture = SubResource("GradientTexture2D_2scup")
-centered = false
-flip_v = true
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1200, 0)
-
-[node name="DirtGroundSeamless" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(596, 509)
-texture = ExtResource("2_gtyjx")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(185, 430)
-script = ExtResource("3_q2chi")
+collision_mask = 3
+script = ExtResource("1_bbwmi")
 
-[node name="Chicken" type="CanvasGroup" parent="CharacterBody2D"]
+[node name="Chicken" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_2m5xt")
 
-[node name="Body" type="Sprite2D" parent="CharacterBody2D/Chicken"]
+[node name="Body" type="Sprite2D" parent="Chicken"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("7_ciiqs")
+texture = ExtResource("3_sf63f")
 
-[node name="Eyes" type="Sprite2D" parent="CharacterBody2D/Chicken/Body"]
+[node name="Eyes" type="Sprite2D" parent="Chicken/Body"]
 position = Vector2(49, -46.923)
-texture = ExtResource("9_63taf")
+texture = ExtResource("4_4cde3")
 hframes = 4
 
-[node name="BackWing" type="Sprite2D" parent="CharacterBody2D/Chicken/Body"]
+[node name="BackWing" type="Sprite2D" parent="Chicken/Body"]
 show_behind_parent = true
 position = Vector2(-14, -8)
-texture = ExtResource("5_v0akl")
+texture = ExtResource("5_2r281")
 
-[node name="BackLeg" type="Sprite2D" parent="CharacterBody2D/Chicken/Body"]
+[node name="BackLeg" type="Sprite2D" parent="Chicken/Body"]
 show_behind_parent = true
 position = Vector2(10, 77.5117)
-texture = ExtResource("6_aunvo")
+texture = ExtResource("6_vytf0")
 offset = Vector2(9, 24)
 
-[node name="FrontWing" type="Sprite2D" parent="CharacterBody2D/Chicken/Body"]
+[node name="FrontWing" type="Sprite2D" parent="Chicken/Body"]
 position = Vector2(-28, 1.51166)
-texture = ExtResource("8_3ii1m")
+texture = ExtResource("7_kcf4y")
 offset = Vector2(-35, -16)
 
-[node name="FrontLeg" type="Sprite2D" parent="CharacterBody2D/Chicken/Body"]
+[node name="FrontLeg" type="Sprite2D" parent="Chicken/Body"]
 position = Vector2(-18, 83.5117)
-texture = ExtResource("10_y3hty")
+texture = ExtResource("8_tfg5t")
 offset = Vector2(-10, 22)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dwrvp")
 
-[node name="Label" type="Label" parent="CharacterBody2D"]
+[node name="Label" type="Label" parent="."]
 visible = false
 offset_left = -44.0
 offset_top = -106.0
 offset_right = -4.0
 offset_bottom = -83.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="CharacterBody2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_stro2")
 position = Vector2(1, 73)
@@ -462,7 +340,7 @@ texture = SubResource("GradientTexture2D_rfmr3")
 lifetime = 0.4
 explosiveness = 0.1
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(299, -177)
 scale = Vector2(0.515625, 1)
 limit_top = -40
@@ -474,23 +352,11 @@ drag_horizontal_offset = -0.32
 drag_left_margin = 0.1
 drag_right_margin = 0.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5t6ml")
 }
 speed_scale = 4.0
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(1, 556)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("WorldBoundaryShape2D_cyxfq")
-
-[node name="SkyBox" type="StaticBody2D" parent="."]
-position = Vector2(1, -50)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SkyBox"]
-shape = SubResource("WorldBoundaryShape2D_1fsg6")
-
-[node name="ObstacleSpawner" type="Timer" parent="."]
-script = ExtResource("12_i4rp6")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_niafj")
