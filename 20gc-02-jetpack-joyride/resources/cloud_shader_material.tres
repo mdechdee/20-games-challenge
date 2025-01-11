@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://3d82bqoo1kgw"]
+
+[ext_resource type="Shader" path="res://resources/cloud.gdshader" id="1_deohc"]
+[ext_resource type="Texture2D" uid="uid://d4eigdhkwu0co" path="res://resources/cell_noise.tres" id="2_mvxat"]
+[ext_resource type="Texture2D" uid="uid://bh00rsqm8fbkw" path="res://resources/noise.tres" id="3_rmy1m"]
+
+[resource]
+shader = ExtResource("1_deohc")
+shader_parameter/perlin_noise = ExtResource("3_rmy1m")
+shader_parameter/cell_noise = ExtResource("2_mvxat")
